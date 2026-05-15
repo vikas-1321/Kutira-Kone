@@ -1,0 +1,12 @@
+{
+  "name": "Kutira-Kone",
+  "description": "A zero-waste fabric exchange app for rural tailors to trade scraps.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "firebase",
+    "google_maps"
+  ]
+}

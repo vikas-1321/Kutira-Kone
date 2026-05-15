@@ -1,0 +1,63 @@
+{
+  "entities": {
+    "Scrap": {
+      "title": "Scrap",
+      "description": "Fabric scrap details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "materialType": { "type": "string", "enum": ["Silk", "Cotton", "Wool", "Synthetic"] },
+        "approxSize": { "type": "string" },
+        "color": { "type": "string" },
+        "location": { "type": "object", "description": "GeoPoint { latitude, longitude }" },
+        "donorId": { "type": "string" },
+        "donorName": { "type": "string" },
+        "status": { "type": "string", "enum": ["Available", "Swapped"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["imageUrl", "materialType", "approxSize", "location", "donorId", "status", "createdAt"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "location": { "type": "object", "description": "Last known GeoPoint" }
+      },
+      "required": ["uid", "email"]
+    },
+    "TradeRequest": {
+      "title": "TradeRequest",
+      "description": "Request to trade a scrap",
+      "type": "object",
+      "properties": {
+        "scrapId": { "type": "string" },
+        "requesterId": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "Accepted", "Rejected"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["scrapId", "requesterId", "ownerId", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/scraps/{scrapId}": {
+      "schema": "Scrap",
+      "description": "Collection of fabric scraps available for trade"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/tradeRequests/{requestId}": {
+      "schema": "TradeRequest",
+      "description": "Trade requests between users"
+    }
+  }
+}
